@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+skinparam rectangle {
+  BorderColor #444444
+  RoundCorner 12
+}
+
+rectangle "<b>User / Operator</b>\n[Person]\n\nWants to search a\nmaze (graph)" as USER #2F6690
+
+rectangle "<b>Maze Solver System</b>\n[Software System]\n\nSearches the maze graph\nusing BFS and DFS" as SYSTEM #3B7DBD
+
+rectangle "<b>Search Result</b>\n[Output]\n\nExpanded nodes, count\nand average time" as RESULT #E8E8E8
+
+USER -right-> SYSTEM : <i>runs the\nprogram</i>
+SYSTEM -right-> RESULT : <i>prints results\non console</i>
+
+@enduml

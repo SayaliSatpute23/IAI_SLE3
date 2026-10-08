@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam rectangle {
+  BorderColor #444444
+  RoundCorner 12
+}
+
+rectangle "<b>Input Module</b>\n[Container]" as INPUT #DCEAF7
+rectangle "<b>Memory /\nVisited Set</b>\n[Container]" as MEMORY #E5F2D8
+rectangle "<b>Output Module</b>\n[Container]" as OUTPUT #DCEAF7
+
+rectangle "<b>Search Engine [Container]</b>" as SEARCH {
+  rectangle "<b>Search Loop</b>\n[Component]\nbfs() / dfs()\nwhile loop" as LOOP #FFF2CC
+
+  rectangle "<b>Frontier /\nOpen List</b>\n[Component]\nQueue (BFS) or\nStack (DFS)" as FRONTIER #DCEAF7
+  rectangle "<b>Neighbour\nGenerator</b>\n[Component]\nGives neighbours\nfrom the graph" as NEIGH #DCEAF7
+  rectangle "<b>Goal Test</b>\n[Component]\nChecks if node\nis the goal" as GOAL #DCEAF7
+  rectangle "<b>Expanded\nList</b>\n[Component]\nRecords order of\nexpanded nodes" as EXPANDED #DCEAF7
+}
+
+INPUT -down-> LOOP : <i>graph, start, goal</i>
+LOOP -right-> MEMORY : <i>check / mark visited</i>
+LOOP -down-> FRONTIER : <i>add / remove node</i>
+LOOP -down-> NEIGH : <i>get neighbours</i>
+LOOP -down-> GOAL : <i>node == goal?</i>
+LOOP -down-> EXPANDED : <i>record node</i>
+EXPANDED -down-> OUTPUT : <i>expanded nodes</i>
+@enduml

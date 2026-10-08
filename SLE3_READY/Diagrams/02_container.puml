@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam rectangle {
+  BorderColor #444444
+  RoundCorner 12
+}
+
+rectangle "<b>User / Operator</b>\n[Person]" as USER #2F6690
+
+rectangle "<b>Maze Solver System</b>" as SYSTEM {
+  rectangle "<b>Input Module</b>\n[Container]\n\nGRAPH, START, GOAL\nset in the code" as INPUT #DCEAF7
+  rectangle "<b>Search Engine</b>\n[Container]\n\nbfs() and dfs()" as SEARCH #DCEAF7
+  rectangle "<b>Output Module</b>\n[Container]\n\nmain(): prints nodes,\ncount and time" as OUTPUT #DCEAF7
+  rectangle "<b>Memory /\nVisited Set</b>\n[Container]\n\nStores visited nodes" as MEMORY #E5F2D8
+}
+
+USER -right-> INPUT : <i>sets graph,\nstart, goal</i>
+INPUT -right-> SEARCH : <i>graph, start,\ngoal</i>
+SEARCH -right-> OUTPUT : <i>expanded\nnodes</i>
+SEARCH -down-> MEMORY : <i>check / mark visited</i>
+OUTPUT -up-> USER : <i>shows results to user</i>
+@enduml

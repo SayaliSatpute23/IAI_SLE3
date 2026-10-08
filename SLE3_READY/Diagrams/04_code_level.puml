@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam class {
+  BackgroundColor #DCEAF7
+  BorderColor #2F6690
+  RoundCorner 10
+}
+
+class "GRAPH" as GRAPH {
+  Dictionary of maze/graph
+  neighbouring nodes
+}
+
+class "START / GOAL" as SG {
+  START = A
+  GOAL = J
+}
+
+class "bfs(graph, start, goal)" as BFS {
+  Queue / deque
+  visited
+  expanded
+}
+
+class "dfs(graph, start, goal)" as DFS {
+  Stack
+  visited
+  expanded
+}
+
+class "average_time(search_function)" as TIME {
+  repeated runs
+  average execution time
+}
+
+class "main()" as MAIN {
+  runs BFS and DFS
+  prints results and timing
+}
+
+GRAPH --> BFS : graph
+GRAPH --> DFS : graph
+SG --> BFS : start, goal
+SG --> DFS : start, goal
+BFS --> TIME : search function
+DFS --> TIME : search function
+BFS --> MAIN : result
+DFS --> MAIN : result
+TIME --> MAIN : average time
+@enduml
